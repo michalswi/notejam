@@ -4,7 +4,9 @@ Notejam: Flask
 
 Notejam application implemented using `Flask <http://flask.pocoo.org/>`_ microframework.
 
-Flask version: 1.1.1
+Flask version: 1.1.1  
+
+Docker image: michalsw/notejam-k8s  
 
 Flask extension used:
 
@@ -13,6 +15,24 @@ Flask extension used:
 * Flask-SQLAlchemy
 * Flask-Testing
 * Flask-WTF
+
+==========================
+Run in docker
+==========================
+Please use **make**:
+
+.. code-block:: bash
+
+    $ make
+    Usage:
+    make <target>
+
+    Targets:
+    build            Build docker image
+    run              Create docker volume and run docker container
+    logs             Get logs from docker container
+    stop             Stop docker container and remove docker volume
+
 
 ==========================
 Installation and launching

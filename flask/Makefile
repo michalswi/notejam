@@ -3,6 +3,7 @@ ALPINE_VERSION := 3.11
 
 DOCKER_REPO := michalsw
 NAME := notejam-k8s
+PORT := 8080
 APP_PORT := 5000
 DOCKER_VOLUME := notejamdb
 
@@ -30,13 +31,15 @@ build: ## Build docker image
 	--label="commit.hash=$(LAST_COMMIT_HASH)" \
 	--label="commit.time=$(LAST_COMMIT_TIME)" \
 	--tag="$(DOCKER_REPO)/$(NAME):$(VERSION)" \
+	--tag="$(DOCKER_REPO)/$(NAME):latest" \
 	.
 
 run: ## Create docker volume and run docker container
 	docker volume create $(DOCKER_VOLUME) && \
 	docker run -d --rm \
 	--name $(NAME) \
-	-p $(APP_PORT):$(APP_PORT) \
+	--env APP_PORT=$(APP_PORT) \
+	-p $(PORT):$(APP_PORT) \
 	-v $(DOCKER_VOLUME):/tmp/app/notejam/ \
 	"$(DOCKER_REPO)/$(NAME):$(VERSION)"
 

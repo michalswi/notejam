@@ -9,6 +9,8 @@ RUN pip install pipenv
 # USER dummy
 # WORKDIR /tmp/dummy
 
+ENV APP_PORT PORT
+
 WORKDIR /tmp/app
 
 COPY notejam notejam
